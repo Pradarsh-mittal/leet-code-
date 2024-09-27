@@ -60,3 +60,29 @@ public:
         return head;
     }
 };
+
+thired approch but leetcode not accept 
+
+void rotateRight(ListNode*& head, int k) {  // Pass head by reference
+    if (head == NULL || head->next == NULL) return;
+
+    if (k == 0) return;
+
+    ListNode* slow = head;
+    ListNode* fast = head;
+    ListNode* tail = head;  
+    
+    for (int i = 0; i < k; i++) {
+        fast = fast->next;
+    }
+    
+    while (fast->next != NULL) {
+        slow = slow->next;
+        fast = fast->next;
+    }
+
+    fast->next = head;  
+    head = slow->next;  
+    slow->next = NULL;  
+}
+

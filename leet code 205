@@ -1,0 +1,16 @@
+class Solution {
+public:
+    vector<int> sortArrayByParity(vector<int>& nums) {
+        vector<int> evens;
+        vector<int> odds;
+        for (int num : nums) {
+            if (num % 2 == 0) {
+                evens.push_back(num);  // Add to evens if it's even
+            } else {
+                odds.push_back(num);  // Add to odds if it's odd
+            }
+        }
+        evens.insert(evens.end(), odds.begin(), odds.end());
+        return evens;  
+    }
+};

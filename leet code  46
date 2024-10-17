@@ -1,0 +1,19 @@
+class Solution {
+public:
+    void permutation(vector<vector<int>>& v,vector<int>& nums,int ans,int orig){
+        if(ans==orig){
+            v.push_back(nums);
+            return;
+        }
+        for(int i=ans;i<=orig;i++){
+            swap(nums[ans], nums[i]);
+            permutation(v, nums, ans + 1, orig);
+            swap(nums[ans], nums[i]);
+        }
+    }
+    vector<vector<int>> permute(vector<int>& nums) {
+        vector<vector<int>> v;
+        permutation(v, nums, 0, nums.size() - 1);
+        return v;
+    }
+};

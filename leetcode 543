@@ -14,3 +14,23 @@ private:
         return 1 + std::max(leftDepth, rightDepth);
     }
 };
+
+
+class Solution {
+public:
+    int maxDia = 0;
+    int level(TreeNode* root){
+        if(root==NULL) return 0;
+        int leftlevel = level(root->left);
+        int rightlevel = level(root->right);
+        return 1+max(leftlevel,rightlevel);
+    }  
+    int diameterOfBinaryTree(TreeNode* root) {
+        if(root==NULL) return 0;
+        int dia = level(root->left)+level(root->right);
+        maxDia = max(maxDia,dia);
+        diameterOfBinaryTree(root->left);
+        diameterOfBinaryTree(root->right);
+        return maxDia;
+    }
+};

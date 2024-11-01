@@ -1,0 +1,27 @@
+class Solution {
+public:
+    int level(TreeNode* root){
+        if(root==NULL) return 0;
+        int leftlevel = level(root->left);
+        int rightlevel = level(root->right);
+        return 1+max(leftlevel,rightlevel);
+    }
+    void display(TreeNode* root,int currentlevel,int level,vector<int>& ans){
+        if(root==NULL) return; //base case
+        if(currentlevel==level){
+            ans.push_back(root->val);
+        }
+        display(root->left,currentlevel+1,level,ans); // call1 left
+        display(root->right,currentlevel+1,level,ans); // call2 right
+    }
+    vector<vector<int>> levelOrder(TreeNode* root) {
+        vector<vector<int>> anss;
+        int n = level(root);
+        for(int i=1;i<=n;i++){
+            vector<int> ans;
+            display(root,1,i,ans);
+            anss.push_back(ans);
+        }
+        return anss;
+    }
+};

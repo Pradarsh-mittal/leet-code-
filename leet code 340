@@ -1,0 +1,16 @@
+bool isBalanced(string num) {
+    int evenSum = 0;
+    int oddSum = 0;
+
+    // Iterate through the string and calculate sums
+    for (int i = 0; i < num.length(); ++i) {
+        int digit = num[i] - '0'; // Convert character to integer
+        if (i % 2 == 0) {
+            evenSum += digit; // Even index
+        } else {
+            oddSum += digit; // Odd index
+        }
+    }
+
+    return evenSum == oddSum;
+}
